@@ -64,7 +64,7 @@ def parsing_olx(soup,cursor):
 
 
     detaillink =listitem[2]
-    orow = detaillink.find_all('li',class_="bgfff ")
+    orow = detaillink.find_all('li',class_ = ["bgfff ","bg-6"] )
 
     for xrow in orow:
         res=xrow.find('a').get('href')
@@ -76,7 +76,8 @@ def parsing_olx(soup,cursor):
               }
         content.append(info)
 
-
+    print(len(content))
+    print(len(nama_mobil))
     for i in range(1, len(nama_mobil)):
         nharga = harga[i].text.replace("Rp", "").replace(".", "")
         tambahdata(nama_mobil[i].text , nharga,content[i]['lokasi'],content[i]['tahun'] )
@@ -117,7 +118,7 @@ def  gocrawl( urltogo,idxpage,cursor ):
         time.sleep(10)
 
 
-    #gocrawl(urltogo2, idxpage,cursor)
+    gocrawl(urltogo2, idxpage,cursor)
 
 
 idxpage=1
@@ -131,6 +132,8 @@ cursor = cnn.cursor()
 #start crawling
 #url =  "http://m.olx.co.id/mobil/bekas/"
 url="http://m.olx.co.id/mobil/bekas/q-avanza-2012/"
+#url="http://m.olx.co.id/mobil/bekas/q-avanza-2012/?page=5"
+
 gocrawl( url,1 ,cursor )
 
 
